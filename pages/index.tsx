@@ -6,7 +6,7 @@ import WalletLink from 'walletlink'
 import Web3Modal from 'web3modal'
 import { ellipseAddress, getChainData } from '../lib/utilities'
 
-const INFURA_ID = '460f40a260564ac4a4f4b3fffb032dad'
+const INFURA_ID = 'ba34f5849fc6417d811dc92c75746956'
 
 const providerOptions = {
   walletconnect: {
@@ -19,7 +19,7 @@ const providerOptions = {
     display: {
       logo: 'https://play-lh.googleusercontent.com/PjoJoG27miSglVBXoXrxBSLveV6e3EeBPpNY55aiUUBM9Q1RCETKCOqdOkX2ZydqVf0',
       name: 'Coinbase',
-      description: 'Connect to Coinbase Wallet (not Coinbase App)',
+      description: 'Connect to Coinbase Wallet',
     },
     options: {
       appName: 'Coinbase', // Your app name
@@ -202,7 +202,7 @@ export const Home = (): JSX.Element => {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>0xVest</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -217,12 +217,16 @@ export const Home = (): JSX.Element => {
               <p className="mb-1">Address:</p>
               <p>{ellipseAddress(address)}</p>
             </div>
+
+            <div>
+              <a href="/home">Home</a>
+            </div>
           </div>
         )}
       </header>
 
       <main>
-        <h1 className="title">Web3Modal Example</h1>
+        <h1 className="title">0xVest</h1>
         {web3Provider ? (
           <button className="button" type="button" onClick={disconnect}>
             Disconnect
