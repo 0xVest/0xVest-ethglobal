@@ -7,7 +7,6 @@ import Web3Modal from 'web3modal'
 import { ellipseAddress, getChainData } from '../lib/utilities'
 import Link from 'next/link'
 
-
 const INFURA_ID = 'ba34f5849fc6417d811dc92c75746956'
 
 const providerOptions = {
@@ -21,7 +20,7 @@ const providerOptions = {
     display: {
       logo: 'https://play-lh.googleusercontent.com/PjoJoG27miSglVBXoXrxBSLveV6e3EeBPpNY55aiUUBM9Q1RCETKCOqdOkX2ZydqVf0',
       name: 'Coinbase',
-      description: 'Connect to Coinbase Wallet',
+      description: 'Connect to Coinbase Wallett',
     },
     options: {
       appName: 'Coinbase', // Your app name
@@ -59,23 +58,23 @@ type StateType = {
 
 type ActionType =
   | {
-    type: 'SET_WEB3_PROVIDER'
-    provider?: StateType['provider']
-    web3Provider?: StateType['web3Provider']
-    address?: StateType['address']
-    chainId?: StateType['chainId']
-  }
+      type: 'SET_WEB3_PROVIDER'
+      provider?: StateType['provider']
+      web3Provider?: StateType['web3Provider']
+      address?: StateType['address']
+      chainId?: StateType['chainId']
+    }
   | {
-    type: 'SET_ADDRESS'
-    address?: StateType['address']
-  }
+      type: 'SET_ADDRESS'
+      address?: StateType['address']
+    }
   | {
-    type: 'SET_CHAIN_ID'
-    chainId?: StateType['chainId']
-  }
+      type: 'SET_CHAIN_ID'
+      chainId?: StateType['chainId']
+    }
   | {
-    type: 'RESET_WEB3_PROVIDER'
-  }
+      type: 'RESET_WEB3_PROVIDER'
+    }
 
 const initialState: StateType = {
   provider: null,
@@ -208,23 +207,27 @@ export const Home = (): JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className='w-full px-16 py-8 bg-[#222] text-[#fafaff]'>
+      <header className="w-full px-16 py-8 bg-[#222] text-[#fafaff]">
         {address && (
           <div className="flex justify-between items-center ">
-            <div className='flex flex-col w-1/2 justify-between'>
+            <div className="flex flex-col w-1/2 justify-between">
               <div>
-                <p className="mb-1 font-semibold">Network: <span className='ml-4'>{chainData?.name}</span></p>
+                <p className="mb-1 font-semibold">
+                  Network: <span className="ml-4">{chainData?.name}</span>
+                </p>
               </div>
               <div>
-                <p className="mb-1 font-semibold">Address:<span className='ml-4'>{ellipseAddress(address)}</span></p>
+                <p className="mb-1 font-semibold">
+                  Address:
+                  <span className="ml-4">{ellipseAddress(address)}</span>
+                </p>
               </div>
             </div>
             <div>
-
-              <Link href="/home"><a className='font-semibold'>Home</a></Link>
-
+              <Link href="/home">
+                <a className="font-semibold">Home</a>
+              </Link>
             </div>
-
           </div>
         )}
       </header>
