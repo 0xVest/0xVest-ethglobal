@@ -5,6 +5,8 @@ import { useCallback, useEffect, useReducer } from 'react'
 import WalletLink from 'walletlink'
 import Web3Modal from 'web3modal'
 import { ellipseAddress, getChainData } from '../lib/utilities'
+import Link from 'next/link'
+
 
 const INFURA_ID = 'ba34f5849fc6417d811dc92c75746956'
 
@@ -57,23 +59,23 @@ type StateType = {
 
 type ActionType =
   | {
-      type: 'SET_WEB3_PROVIDER'
-      provider?: StateType['provider']
-      web3Provider?: StateType['web3Provider']
-      address?: StateType['address']
-      chainId?: StateType['chainId']
-    }
+    type: 'SET_WEB3_PROVIDER'
+    provider?: StateType['provider']
+    web3Provider?: StateType['web3Provider']
+    address?: StateType['address']
+    chainId?: StateType['chainId']
+  }
   | {
-      type: 'SET_ADDRESS'
-      address?: StateType['address']
-    }
+    type: 'SET_ADDRESS'
+    address?: StateType['address']
+  }
   | {
-      type: 'SET_CHAIN_ID'
-      chainId?: StateType['chainId']
-    }
+    type: 'SET_CHAIN_ID'
+    chainId?: StateType['chainId']
+  }
   | {
-      type: 'RESET_WEB3_PROVIDER'
-    }
+    type: 'RESET_WEB3_PROVIDER'
+  }
 
 const initialState: StateType = {
   provider: null,
@@ -200,33 +202,35 @@ export const Home = (): JSX.Element => {
   const chainData = getChainData(chainId)
 
   return (
-    <div className="container">
+    <div className="w-screen">
       <Head>
         <title>0xVest</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header>
+      <header className='w-full px-16 py-8 bg-[#222] text-[#fafaff]'>
         {address && (
-          <div className="grid">
-            <div>
-              <p className="mb-1">Network:</p>
-              <p>{chainData?.name}</p>
+          <div className="flex justify-between items-center ">
+            <div className='flex flex-col w-1/2 justify-between'>
+              <div>
+                <p className="mb-1 font-semibold">Network: <span className='ml-4'>{chainData?.name}</span></p>
+              </div>
+              <div>
+                <p className="mb-1 font-semibold">Address:<span className='ml-4'>{ellipseAddress(address)}</span></p>
+              </div>
             </div>
             <div>
-              <p className="mb-1">Address:</p>
-              <p>{ellipseAddress(address)}</p>
+
+              <Link href="/home"><a className='font-semibold'>Home</a></Link>
+
             </div>
 
-            <div>
-              <a href="/home">Home</a>
-            </div>
           </div>
         )}
       </header>
 
       <main>
-        <h1 className="title">0xVest</h1>
+        <h1 className="font-bold text-2xl mb-10">0xVest</h1>
         {web3Provider ? (
           <button className="button" type="button" onClick={disconnect}>
             Disconnect
@@ -242,6 +246,7 @@ export const Home = (): JSX.Element => {
         main {
           padding: 5rem 0;
           text-align: center;
+          background: #fafaff;
         }
 
         p {
